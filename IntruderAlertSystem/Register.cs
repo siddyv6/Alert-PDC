@@ -13,7 +13,7 @@ using System.Windows.Forms;
 namespace IntruderAlertSystem {
     public partial class Register : Form {
         private static Register register = null;
-
+        String errorMessage = "";
         public Register() {
             InitializeComponent();
         }
@@ -26,9 +26,53 @@ namespace IntruderAlertSystem {
             return register;
         }
 
-        private void btnRegister_Click(object sender, EventArgs e) {
-            Login.getInstance().Show();
-            this.Hide();
+
+        private bool checkUname()
+        {
+            //Sql to check usernames
+            return false;
         }
+
+
+        private void btnRegister_Click(object sender, EventArgs e) {
+            if (nameTxt.Text == "" || uNameTxt.Text == "" || passwordTxt.Text == "" || passwordTxt2.Text == "")
+            {
+                MessageBox.Show("All fields are mandatory, please fill them in.", "One or more fields are blank", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            bool unique = checkUname(); // flag for unique Username 
+
+            if (!(passwordTxt.Text == passwordTxt2.Text) || !unique)
+            {
+                MessageBox.Show("test", "test", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (!unique)
+                {
+                    errorMessage += String.Format("Username is already taken, please try another one.", uNameTxt.Text);
+                }
+
+                if (!(passwordTxt.Text == passwordTxt2.Text))
+                {
+                    errorMessage += String.Format("The passwords do not match. Please re-enter your password.");
+                }
+            }
+            else {
+                // create a new user in the database
+
+                // create a new salt, hash password and store both in db
+                // http://stackoverflow.com/questions/17185739/saving-byte-array-to-mysql
+
+                // clear the data so a new user can login
+
+                uNameTxt.Clear();
+                passwordTxt2.Clear();
+                passwordTxt.Clear();
+                nameTxt.Clear();
+
+                Login.getInstance().Show();
+                this.Hide();
+            }
+            //  Login.getInstance().Show();
+            // this.Hide();
+        }
+
     }
 }

@@ -18,3 +18,6 @@ C:\Users\Kishor\Google Drive\Docs\Uni\Final Year\COMP1690 - Programming Distribu
 C:\Users\Kishor\Google Drive\Docs\Uni\Final Year\COMP1690 - Programming Distributed Components\CW - 1\IntruderAlertSystem\obj\Debug\IntruderAlertSystem.Properties.Resources.resources
 C:\Users\Kishor\Google Drive\Docs\Uni\Final Year\COMP1690 - Programming Distributed Components\CW - 1\IntruderAlertSystem\obj\Debug\IntruderAlertSystem.Register.resources
 C:\Users\Kishor\Google Drive\Docs\Uni\Final Year\COMP1690 - Programming Distributed Components\CW - 1\IntruderAlertSystem\obj\Debug\IntruderAlertSystem.csproj.GenerateResource.Cache
+C:\Users\Kishor\Google Drive\Docs\Uni\Final Year\COMP1690 - Programming Distributed Components\CW - 1\Alert-PDC\IntruderAlertSystem\bin\Debug\IntruderAlertSystem.exe.config
+C:\Users\Kishor\Google Drive\Docs\Uni\Final Year\COMP1690 - Programming Distributed Components\CW - 1\Alert-PDC\IntruderAlertSystem\obj\Debug\IntruderAlertSystem.exe
+C:\Users\Kishor\Google Drive\Docs\Uni\Final Year\COMP1690 - Programming Distributed Components\CW - 1\Alert-PDC\IntruderAlertSystem\obj\Debug\IntruderAlertSystem.pdb
