@@ -22,5 +22,15 @@ namespace Alarm.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=pdc_user;persistsec")]
+        public string dbconnection {
+            get {
+                return ((string)(this["dbconnection"]));
+            }
+        }
     }
 }

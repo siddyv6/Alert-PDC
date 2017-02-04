@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,49 @@ namespace IntruderAlertSystem {
 
         public Login() {
             InitializeComponent();
+            testDBConnection();
+
+        }
+
+        public void testDBConnection()
+        {
+            MySqlConnection con = Alarm.dbstuff.getDBConection();
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM user WHERE userID=@UID", con);
+            cmd.Parameters.Add(new MySqlParameter("@UID", 1));
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+
+            DataSet ds = new DataSet();
+            MySqlDataAdapter dAdap = new MySqlDataAdapter();
+            dAdap.SelectCommand = cmd;
+            dAdap.Fill(ds, "Name");
+
+            MySqlDataReader reader;
+
+            try
+            {
+                //string uname = ds.Tables["Username"].Rows[0].ToString();
+                //Console.WriteLine(String.Format("username is: '{0}'", uname));
+
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    string s = reader.GetString("Name");
+                    Console.WriteLine(String.Format("username is: '{0}'", s));
+                }
+
+                reader.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
         public static Form getInstance() {
