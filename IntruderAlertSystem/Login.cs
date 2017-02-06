@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Alarm;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,7 +23,7 @@ namespace IntruderAlertSystem {
 
         public void testDBConnection()
         {
-            MySqlConnection con = Alarm.dbstuff.getDBConection();
+            MySqlConnection con = Alarm.dbstuff.DBConection();
             MySqlCommand cmd = new MySqlCommand("SELECT * FROM user WHERE userID=@UID", con);
             cmd.Parameters.Add(new MySqlParameter("@UID", 1));
 
@@ -70,7 +71,24 @@ namespace IntruderAlertSystem {
         }
 
         private void btnLogin_Click(object sender, EventArgs e) {
-            this.Close();
+            if (uNameTxt.Text == "" || passwordTxt.Text == "")
+            {
+                MessageBox.Show("Both Username and Password fields are mandatory, please fill them in.",
+                    "Username or password fields are blank", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool validUser = dbstuff.decrypteUser(uNameTxt.Text, passwordTxt.Text);
+
+            if (validUser)
+            {
+                //authenticated.getInstance().Show();
+                getInstance().Hide();
+            }
+            else {
+                MessageBox.Show("Your username or password is incorrect, please try again or register a new account.",
+                    "Username or password incorrect.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnRegister_Click(object sender, EventArgs e) {
@@ -79,8 +97,8 @@ namespace IntruderAlertSystem {
         }
 
         private void btnReset_Click(object sender, EventArgs e) {
-            txtUsername.Text = "";
-            txtPassword.Text = "";
+            uNameTxt.Text = "";
+            passwordTxt.Text = "";
         }
     }
 }

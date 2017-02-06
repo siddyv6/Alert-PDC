@@ -23,10 +23,10 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.uNameTxt = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.passwordTxt = new System.Windows.Forms.TextBox();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
@@ -34,10 +34,10 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(73, 6);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(199, 20);
-            this.txtUsername.TabIndex = 0;
+            this.uNameTxt.Location = new System.Drawing.Point(73, 6);
+            this.uNameTxt.Name = "txtUsername";
+            this.uNameTxt.Size = new System.Drawing.Size(199, 20);
+            this.uNameTxt.TabIndex = 0;
             // 
             // lblUsername
             // 
@@ -59,11 +59,11 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(73, 32);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(199, 20);
-            this.txtPassword.TabIndex = 2;
+            this.passwordTxt.Location = new System.Drawing.Point(73, 32);
+            this.passwordTxt.Name = "txtPassword";
+            this.passwordTxt.PasswordChar = '*';
+            this.passwordTxt.Size = new System.Drawing.Size(199, 20);
+            this.passwordTxt.TabIndex = 2;
             // 
             // btnReset
             // 
@@ -104,9 +104,9 @@
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.lblPassword);
-            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.passwordTxt);
             this.Controls.Add(this.lblUsername);
-            this.Controls.Add(this.txtUsername);
+            this.Controls.Add(this.uNameTxt);
             this.Name = "Form1";
             this.Text = "Login";
             this.ResumeLayout(false);
@@ -116,10 +116,10 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtUsername;
+        private System.Windows.Forms.TextBox uNameTxt;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox passwordTxt;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Button btnLogin;

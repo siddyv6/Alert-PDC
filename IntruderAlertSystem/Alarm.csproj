@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dbstuff.cs" />
+    <Compile Include="Encryption.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
