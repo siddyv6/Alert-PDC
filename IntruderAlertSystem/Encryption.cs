@@ -58,7 +58,7 @@ namespace Alarm
                 return BCrypt.Net.BCrypt.HashPassword(password, 10);
         }
 
-            public static bool ValidatePassword(string password, string correctHash)
+            public static bool ValidatePassword(string password, string correctHash)            
             {
            // string str = "asdf";
            // string pass = BCrypt.Net.BCrypt.HashPassword(password, 10);
