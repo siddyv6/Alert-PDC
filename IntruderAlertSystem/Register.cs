@@ -65,10 +65,10 @@ namespace IntruderAlertSystem {
                 // http://stackoverflow.com/questions/17185739/saving-byte-array-to-mysql
 
                 // clear the data so a new user can login
-                byte[] salt = Encryption.GenerateSalt();
-                byte[] pw = Encryption.ComputePasswordHash(passwordTxt.Text, salt);
+                //string salt = Encryption.GetRandomSalt();
+                string pw = Encryption.HashPassword(passwordTxt.Text);
                 // create a new salt, hash password and store both in db
-                dbstuff.createUser(uNameTxt.Text, pw, salt);
+                dbstuff.createUser(uNameTxt.Text, pw);
 
                 MessageBox.Show("Your acccount has been created successfully. You may now login.",
                     "Account created", MessageBoxButtons.OK, MessageBoxIcon.Information);

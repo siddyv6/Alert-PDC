@@ -30,7 +30,7 @@ namespace Alarm
             MySqlConnection con = DBConection();
             string sql = "SELECT Name FROM user WHERE Name = @name";
             MySqlCommand cmd = new MySqlCommand(sql, con);
-            cmd.Parameters.AddWithValue("@nome", username);
+            cmd.Parameters.AddWithValue("@name", username);
 
             //MySqlParameter paramUsername = new MySqlParameter("@name", MySqlDbType.VarChar);
           //  paramUsername.Value = username;
@@ -54,8 +54,8 @@ namespace Alarm
             }
             catch (MySqlException E)
             {
-                throw E;
                 MessageBox.Show("Can not open connection ! ");
+                throw E;
             }
             finally
             {
@@ -64,14 +64,14 @@ namespace Alarm
             return !user;
         }
 
-        public static void createUser(string username, byte[] password, byte[] salt)
+        public static void createUser(string username, string password)
         {
             MySqlConnection con = DBConection();
-            string sql = "INSERT INTO user (Name, PasswordHash, PasswordSalt) VALUES (@uname, @pw, @salt);";
+            string sql = "INSERT INTO user (Name, PasswordHash) VALUES (@uname, @pw);";
             MySqlCommand cmd = new MySqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@uname", username);
             cmd.Parameters.AddWithValue("@pw", password);
-            cmd.Parameters.AddWithValue("@salt", salt);
+           // cmd.Parameters.AddWithValue("@salt", salt);
 
            // MySqlParameter paramUsername = new MySqlParameter("@uname", MySqlDbType.VarChar);
             //MySqlParameter paramPw = new MySqlParameter("@pw", MySqlDbType.VarBinary);
@@ -112,16 +112,16 @@ namespace Alarm
             cmd.ExecuteNonQuery();
 
             MySqlDataReader reader;
-            byte[] salt = null;
-            byte[] storedPw = null;
+           // string salt = null;
+            string storedPw = null;
 
             try
             {
                 reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    salt = (byte[])reader["PasswordSalt"];
-                    storedPw = (byte[])reader["PasswordHash"];
+                   // salt = (string)reader["PasswordSalt"];
+                    storedPw = (string)reader["PasswordHash"];
                 }
                 else {
                     Console.WriteLine(String.Format("Username '{0}' not found.", username));
@@ -139,12 +139,12 @@ namespace Alarm
             }
 
 
-            if (salt == null || storedPw == null)
+            if (storedPw == null)
             {
                 return false;
             }
 
-            return Encryption.VerifyPassword(password, storedPw, salt);
+            return Encryption.ValidatePassword(password, storedPw);
         }
     }
     }
