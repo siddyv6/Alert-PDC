@@ -82,8 +82,10 @@ namespace IntruderAlertSystem {
 
             if (validUser)
             {
+                Home.getInstance().Show();
+                this.Hide();
                 //authenticated.getInstance().Show();
-                getInstance().Hide();
+           //     getInstance().Hide();
             }
             else {
                 MessageBox.Show("Your username or password is incorrect, please try again or register a new account.",
