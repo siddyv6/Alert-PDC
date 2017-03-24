@@ -26,7 +26,7 @@ namespace Alarm.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=pdc_user;persistsec")]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=sid;persistsec")]
         public string dbconnection {
             get {
                 return ((string)(this["dbconnection"]));
