@@ -64,6 +64,47 @@ namespace Alarm
             return !user;
         }
 
+        public static bool createHouse(string hName, int x, int y, string alarmS)
+        {
+            MySqlConnection con = DBConection();
+            string sql = "INSERT INTO `alarm`.`home` (`userID`, `hName`, `x`, `y`, `alarmS`) VALUES (@userID, @hName, @x, @y, @state)";
+            MySqlCommand cmd = new MySqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@userID", User.UserID);
+            cmd.Parameters.AddWithValue("@hName", hName);
+            cmd.Parameters.AddWithValue("@x", x);
+            cmd.Parameters.AddWithValue("@y", y);
+            cmd.Parameters.AddWithValue("@state", alarmS);
+
+            //MySqlParameter paramUsername = new MySqlParameter("@name", MySqlDbType.VarChar);
+            //  paramUsername.Value = username;
+            //cmd.Parameters.Add(paramUsername);
+
+            bool user = false;
+          //  MySqlDataReader reader;
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+
+              //  reader = cmd.ExecuteReader();
+               
+                    user = true;
+                Console.WriteLine("Test");
+             //   reader.Close();
+            }
+            catch (MySqlException E)
+            {
+                MessageBox.Show("Can not open connection ! ");
+                throw E;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return user;
+        }
+
         public static DataGridView homelog(DataGridView dgv, int userID)
         {
             MySqlConnection con = DBConection();
@@ -89,6 +130,49 @@ namespace Alarm
             bSource.DataSource = daTbl;
                 dgv.DataSource = bSource;
                // con.Close();
+
+            }
+            catch (MySqlException E)
+            {
+                MessageBox.Show("Can not open connection ! ");
+                throw E;
+            }
+            finally
+            {
+                con.Close();
+
+            }
+            return dgv;
+
+        }
+
+        public static ComboBox cbFill(ComboBox dgv, int userID)
+        {
+            MySqlConnection con = DBConection();
+            string sql = "SELECT idHome,hName FROM alarm.home where userID = @nameid";
+            MySqlCommand cmd = new MySqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@nameid", userID);
+
+            //MySqlParameter paramUsername = new MySqlParameter("@name", MySqlDbType.VarChar);
+            //  paramUsername.Value = username;
+            //cmd.Parameters.Add(paramUsername);
+
+            MySqlDataReader reader;
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmd;
+                DataTable daTbl = new DataTable();
+                da.Fill(daTbl);
+                //BindingSource bSource = new BindingSource();
+                //bSource.DataSource = daTbl;
+                dgv.DataSource = daTbl;
+                //daTbl.Columns.Add("idHome", typeof(int));
+
+                // con.Close();
 
             }
             catch (MySqlException E)

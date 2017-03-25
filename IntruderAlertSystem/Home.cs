@@ -13,7 +13,7 @@ namespace Alarm
     public partial class Home : Form
     {
         private static Home home = null;
-        private DataGridView test;
+        private ComboBox test;
 
         public Home()
         {
@@ -32,24 +32,55 @@ namespace Alarm
 
         private void crtFloor_Click(object sender, EventArgs e)
         {
+            int selectedValue = (int)SizeCB.SelectedValue;
+            if(hName.Text == "")
+            {
 
-            test = CStuff.creatDG(test1, Convert.ToInt32(X.Text), Convert.ToInt32(Y.Text));
+                 MessageBox.Show("House Name fields are blank.",
+                    "House Name fields are blank", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (dbstuff.createHouse(hName.Text, selectedValue, selectedValue, "Off") == true )
+            {
+                MessageBox.Show("House has been created",
+                     "House has been created", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            ;
+         //   Console.WriteLine(dbstuff.createHouse(hName.Text, selectedValue, selectedValue, "Off"));
+                //MessageBox.Show("House has been created",
+                //    "House has been created", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
+            
+
+           // Console.WriteLine(SizeCB.Items);
           
-             Y.Visible = false;
-             X.Visible = false;
-             crtFloor.Visible = false;
-             label1.Visible = false;
-             label2.Visible = false;
-
-            // // set start location to top-left corner
-            const int START_LOCATION = 25;
-
-            // // add table to form
-            getInstance().Controls.Add(test);
+            //test = CStuff.creatDG(test1, selectedValue, selectedValue);
+            //Console.WriteLine(selectedValue);
+           
+            //// // add table to form
+            //getInstance().Controls.Add(test);
 
             // set the form size to be the table with some padding
           // int padding = START_LOCATION * 2;
          //  getInstance().ClientSize = new Size(test.Height + padding, test.Width + padding);
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+            SizeCB.Items.Clear();
+            int[] data = { 2, 3, 4, 5, 6};
+            SizeCB.DataSource = data;
+            SizeCB.SelectedIndex = 0;
+            test = dbstuff.cbFill(HousesCB, User.UserID);
+
+        }
+
+        private void dHouse_Click(object sender, EventArgs e)
+        {
+            int t = (int)HousesCB.SelectedValue;
+            Console.WriteLine(t);
+
         }
     }
 }
