@@ -12,13 +12,16 @@ using System.Windows.Forms;
 
 namespace IntruderAlertSystem {
     public partial class Login : Form {
-
+       // public User Test;
         private static Login login = null;
+        
+       
 
         public Login() {
             InitializeComponent();
             testDBConnection();
-
+            int x = User.UserID;
+            Console.WriteLine(x);
         }
 
         public void testDBConnection()
@@ -82,7 +85,9 @@ namespace IntruderAlertSystem {
 
             if (validUser)
             {
-                Home.getInstance().Show();
+                Console.WriteLine(User.UserID);
+
+                HPage.getInstance().Show();
                 this.Hide();
                 //authenticated.getInstance().Show();
            //     getInstance().Hide();

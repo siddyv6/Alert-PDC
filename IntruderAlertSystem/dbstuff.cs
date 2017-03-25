@@ -64,6 +64,47 @@ namespace Alarm
             return !user;
         }
 
+        public static DataGridView homelog(DataGridView dgv, int userID)
+        {
+            MySqlConnection con = DBConection();
+            string sql = "SELECT * FROM alarm.homelog where idhome = any (SELECT idhome FROM home WHERE userID = @nameid )";
+            MySqlCommand cmd = new MySqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@nameid", userID);
+
+            //MySqlParameter paramUsername = new MySqlParameter("@name", MySqlDbType.VarChar);
+            //  paramUsername.Value = username;
+            //cmd.Parameters.Add(paramUsername);
+
+           // MySqlDataReader reader;
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+                MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            DataTable daTbl = new DataTable();
+            da.Fill(daTbl);
+            BindingSource bSource = new BindingSource();
+            bSource.DataSource = daTbl;
+                dgv.DataSource = bSource;
+               // con.Close();
+
+            }
+            catch (MySqlException E)
+            {
+                MessageBox.Show("Can not open connection ! ");
+                throw E;
+            }
+            finally
+            {
+                con.Close();
+
+            }
+            return dgv;
+
+        }
+
         public static void createUser(string username, string password)
         {
             MySqlConnection con = DBConection();
@@ -71,19 +112,7 @@ namespace Alarm
             MySqlCommand cmd = new MySqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@uname", username);
             cmd.Parameters.AddWithValue("@pw", password);
-           // cmd.Parameters.AddWithValue("@salt", salt);
-
-           // MySqlParameter paramUsername = new MySqlParameter("@uname", MySqlDbType.VarChar);
-            //MySqlParameter paramPw = new MySqlParameter("@pw", MySqlDbType.VarBinary);
-            //MySqlParameter paramSalt = new MySqlParameter("@salt", MySqlDbType.VarBinary);
-
-           // paramUsername.Value = username;
-           // paramPw.Value = password;
-           // paramSalt.Value = salt;
-
-            //cmd.Parameters.Add(paramUsername);
-            //cmd.Parameters.Add(paramPw);
-            //cmd.Parameters.Add(paramSalt);
+    
 
             try
             {
@@ -104,7 +133,7 @@ namespace Alarm
         public static bool decrypteUser(string username, string password)
         {
             MySqlConnection con = DBConection();
-            string sql = "SELECT PasswordHash FROM user WHERE Name = @uname";
+            string sql = "SELECT PasswordHash,userID FROM user WHERE Name = @uname";
             MySqlCommand cmd = new MySqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@uname", username);
 
@@ -112,7 +141,7 @@ namespace Alarm
             cmd.ExecuteNonQuery();
 
             MySqlDataReader reader;
-           // string salt = null;
+            int userid = 01;
             string storedPw = null;
 
             try
@@ -120,7 +149,7 @@ namespace Alarm
                 reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                   // salt = (string)reader["PasswordSalt"];
+                    userid = (int)reader["userID"];
                     storedPw = (string)reader["PasswordHash"];
                 }
                 else {
@@ -143,6 +172,8 @@ namespace Alarm
             {
                 return false;
             }
+            User.UserID = userid;
+            //Console.WriteLine(User.UserID);
 
             return Encryption.ValidatePassword(password, storedPw);
         }

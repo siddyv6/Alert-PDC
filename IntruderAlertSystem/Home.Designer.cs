@@ -34,6 +34,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.crtFloor = new System.Windows.Forms.Button();
             this.test1 = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.test1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,14 +88,24 @@
             this.test1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.test1.Location = new System.Drawing.Point(12, 14);
             this.test1.Name = "test1";
-            this.test1.Size = new System.Drawing.Size(295, 189);
+            this.test1.Size = new System.Drawing.Size(379, 327);
             this.test1.TabIndex = 5;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(428, 162);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 100);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Create a House";
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(762, 473);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.test1);
             this.Controls.Add(this.crtFloor);
             this.Controls.Add(this.label2);
@@ -117,5 +128,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button crtFloor;
         private System.Windows.Forms.DataGridView test1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
