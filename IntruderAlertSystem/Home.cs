@@ -33,7 +33,7 @@ namespace Alarm
         private void crtFloor_Click(object sender, EventArgs e)
         {
 
-            test = CStuff.creatDG(Convert.ToInt32(X.Text), Convert.ToInt32(Y.Text));
+            test = CStuff.creatDG(test1, Convert.ToInt32(X.Text), Convert.ToInt32(Y.Text));
           
              Y.Visible = false;
              X.Visible = false;
@@ -48,8 +48,8 @@ namespace Alarm
             getInstance().Controls.Add(test);
 
             // set the form size to be the table with some padding
-           int padding = START_LOCATION * 2;
-           getInstance().ClientSize = new Size(test.Height + padding, test.Width + padding);
+          // int padding = START_LOCATION * 2;
+         //  getInstance().ClientSize = new Size(test.Height + padding, test.Width + padding);
         }
     }
 }
