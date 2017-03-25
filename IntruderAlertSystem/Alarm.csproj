@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CStuff.cs" />
     <Compile Include="dbstuff.cs" />
     <Compile Include="Encryption.cs" />
     <Compile Include="Home.cs">
