@@ -27,16 +27,15 @@
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.passwordTxt = new System.Windows.Forms.TextBox();
-            this.btnReset = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // txtUsername
+            // uNameTxt
             // 
             this.uNameTxt.Location = new System.Drawing.Point(73, 6);
-            this.uNameTxt.Name = "txtUsername";
-            this.uNameTxt.Size = new System.Drawing.Size(199, 20);
+            this.uNameTxt.Name = "uNameTxt";
+            this.uNameTxt.Size = new System.Drawing.Size(234, 20);
             this.uNameTxt.TabIndex = 0;
             // 
             // lblUsername
@@ -57,27 +56,17 @@
             this.lblPassword.TabIndex = 3;
             this.lblPassword.Text = "Password";
             // 
-            // txtPassword
+            // passwordTxt
             // 
             this.passwordTxt.Location = new System.Drawing.Point(73, 32);
-            this.passwordTxt.Name = "txtPassword";
+            this.passwordTxt.Name = "passwordTxt";
             this.passwordTxt.PasswordChar = '*';
-            this.passwordTxt.Size = new System.Drawing.Size(199, 20);
+            this.passwordTxt.Size = new System.Drawing.Size(234, 20);
             this.passwordTxt.TabIndex = 2;
-            // 
-            // btnReset
-            // 
-            this.btnReset.Location = new System.Drawing.Point(15, 58);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
-            this.btnReset.TabIndex = 4;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnRegister
             // 
-            this.btnRegister.Location = new System.Drawing.Point(106, 58);
+            this.btnRegister.Location = new System.Drawing.Point(15, 91);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(75, 23);
             this.btnRegister.TabIndex = 5;
@@ -87,7 +76,7 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(197, 58);
+            this.btnLogin.Location = new System.Drawing.Point(197, 91);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 6;
@@ -95,19 +84,18 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
-            // Form1
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 96);
+            this.ClientSize = new System.Drawing.Size(319, 117);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnRegister);
-            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.passwordTxt);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.uNameTxt);
-            this.Name = "Form1";
+            this.Name = "Login";
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -120,7 +108,6 @@
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox passwordTxt;
-        private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Button btnLogin;
     }

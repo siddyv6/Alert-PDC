@@ -38,7 +38,7 @@ namespace IntruderAlertSystem {
         private void btnRegister_Click(object sender, EventArgs e) {
             if (uNameTxt.Text == "" || passwordTxt.Text == "" || passwordTxt2.Text == "")
             {
-                MessageBox.Show("All fields are mandatory, please fill them in.", "One or more fields are blank", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("One or more fields are blank", "One or more fields are blank", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             bool unique = dbstuff.uniqueUsername(uNameTxt.Text); // flag for unique Username 
 

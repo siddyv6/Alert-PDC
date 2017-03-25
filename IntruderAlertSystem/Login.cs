@@ -98,9 +98,6 @@ namespace IntruderAlertSystem {
             this.Hide();
         }
 
-        private void btnReset_Click(object sender, EventArgs e) {
-            uNameTxt.Text = "";
-            passwordTxt.Text = "";
-        }
+        
     }
 }

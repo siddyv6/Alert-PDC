@@ -104,7 +104,7 @@ namespace Alarm
         public static bool decrypteUser(string username, string password)
         {
             MySqlConnection con = DBConection();
-            string sql = "SELECT PasswordHash, PasswordSalt FROM user WHERE Name = @uname";
+            string sql = "SELECT PasswordHash FROM user WHERE Name = @uname";
             MySqlCommand cmd = new MySqlCommand(sql, con);
             cmd.Parameters.AddWithValue("@uname", username);
 
