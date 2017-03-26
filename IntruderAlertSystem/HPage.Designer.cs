@@ -33,6 +33,7 @@
             this.SLogs = new System.Windows.Forms.Button();
             this.viewHouse = new System.Windows.Forms.Button();
             this.createHouse = new System.Windows.Forms.Button();
+            this.EditH = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -84,11 +85,22 @@
             this.createHouse.UseVisualStyleBackColor = true;
             this.createHouse.Click += new System.EventHandler(this.createHouse_Click_1);
             // 
+            // EditH
+            // 
+            this.EditH.Location = new System.Drawing.Point(28, 213);
+            this.EditH.Name = "EditH";
+            this.EditH.Size = new System.Drawing.Size(231, 37);
+            this.EditH.TabIndex = 5;
+            this.EditH.Text = "Edit House";
+            this.EditH.UseVisualStyleBackColor = true;
+            this.EditH.Click += new System.EventHandler(this.EditH_Click);
+            // 
             // HPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(309, 296);
+            this.Controls.Add(this.EditH);
             this.Controls.Add(this.createHouse);
             this.Controls.Add(this.viewHouse);
             this.Controls.Add(this.SLogs);
@@ -108,5 +120,6 @@
         private System.Windows.Forms.Button viewHouse;
         private System.Windows.Forms.Button createHouse;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button EditH;
     }
 }

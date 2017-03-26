@@ -35,10 +35,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.SizeCB = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dHouse = new System.Windows.Forms.Button();
-            this.HousesCB = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -69,7 +70,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(249, 105);
+            this.groupBox1.Size = new System.Drawing.Size(314, 105);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Create a House";
@@ -110,39 +111,42 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Controls.Add(this.dHouse);
-            this.groupBox2.Controls.Add(this.HousesCB);
             this.groupBox2.Location = new System.Drawing.Point(12, 132);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(249, 88);
+            this.groupBox2.Size = new System.Drawing.Size(314, 188);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Delete a House";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(7, 20);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(288, 133);
+            this.dataGridView1.TabIndex = 9;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
             // dHouse
             // 
-            this.dHouse.Location = new System.Drawing.Point(6, 46);
+            this.dHouse.Location = new System.Drawing.Point(6, 159);
             this.dHouse.Name = "dHouse";
-            this.dHouse.Size = new System.Drawing.Size(234, 23);
+            this.dHouse.Size = new System.Drawing.Size(289, 23);
             this.dHouse.TabIndex = 8;
             this.dHouse.Text = "Delete House";
             this.dHouse.UseVisualStyleBackColor = true;
             this.dHouse.Click += new System.EventHandler(this.dHouse_Click);
             // 
-            // HousesCB
-            // 
-            this.HousesCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.HousesCB.FormattingEnabled = true;
-            this.HousesCB.Location = new System.Drawing.Point(6, 19);
-            this.HousesCB.Name = "HousesCB";
-            this.HousesCB.Size = new System.Drawing.Size(234, 21);
-            this.HousesCB.TabIndex = 8;
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(275, 226);
+            this.ClientSize = new System.Drawing.Size(341, 332);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Home";
@@ -151,6 +155,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -164,6 +169,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button dHouse;
-        private System.Windows.Forms.ComboBox HousesCB;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

@@ -74,6 +74,12 @@
   <ItemGroup>
     <Compile Include="CStuff.cs" />
     <Compile Include="dbstuff.cs" />
+    <Compile Include="EHome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EHome.Designer.cs">
+      <DependentUpon>EHome.cs</DependentUpon>
+    </Compile>
     <Compile Include="Encryption.cs" />
     <Compile Include="HLogs.cs">
       <SubType>Form</SubType>
@@ -81,6 +87,7 @@
     <Compile Include="HLogs.Designer.cs">
       <DependentUpon>HLogs.cs</DependentUpon>
     </Compile>
+    <Compile Include="House.cs" />
     <Compile Include="HPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +128,9 @@
     <Compile Include="vHouses.Designer.cs">
       <DependentUpon>vHouses.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="EHome.resx">
+      <DependentUpon>EHome.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HLogs.resx">
       <DependentUpon>HLogs.cs</DependentUpon>
     </EmbeddedResource>

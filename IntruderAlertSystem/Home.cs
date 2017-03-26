@@ -13,7 +13,7 @@ namespace Alarm
     public partial class Home : Form
     {
         private static Home home = null;
-        private ComboBox test;
+        private DataGridView test;
 
         public Home()
         {
@@ -72,14 +72,31 @@ namespace Alarm
             int[] data = { 2, 3, 4, 5, 6};
             SizeCB.DataSource = data;
             SizeCB.SelectedIndex = 0;
-            test = dbstuff.cbFill(HousesCB, User.UserID);
+            test = dbstuff.cbFill(dataGridView1, User.UserID);
 
         }
 
         private void dHouse_Click(object sender, EventArgs e)
         {
-            int t = (int)HousesCB.SelectedValue;
-            Console.WriteLine(t);
+            //    int t = (int)HousesCB.SelectedValue;
+            dbstuff.deleteHouse(House.HomeIDs);
+            Console.WriteLine(House.HomeIDs);
+            MessageBox.Show("House has been deleted.",
+                   "House Name fields are blank", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            test = dbstuff.cbFill(dataGridView1, User.UserID);
+
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                int value1 = Convert.ToInt32(row.Cells[0].Value.ToString());
+                string value2 = row.Cells[1].Value.ToString();
+                //...
+                House.homeIDs = value1;
+                Console.WriteLine(value1);
+            }
 
         }
     }

@@ -55,5 +55,11 @@ namespace Alarm
             this.Hide();
 
         }
+
+        private void EditH_Click(object sender, EventArgs e)
+        {
+            EHome.getInstance().Show();
+          //  this.Hide();
+        }
     }
 }

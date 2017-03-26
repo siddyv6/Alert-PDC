@@ -61,7 +61,43 @@ namespace Alarm
             {
                 con.Close();
             }
-            return !user;
+            return user;
+        }
+
+
+        public static bool deleteHouse(int houseID)
+        {
+            MySqlConnection con = DBConection();
+            string sql = "DELETE FROM `alarm`.`home` WHERE `idhome`= @name";
+            MySqlCommand cmd = new MySqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@name", houseID);
+
+            //MySqlParameter paramUsername = new MySqlParameter("@name", MySqlDbType.VarChar);
+            //  paramUsername.Value = username;
+            //cmd.Parameters.Add(paramUsername);
+
+            bool user = false;
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+
+             
+                    user = true;
+                
+
+            }
+            catch (MySqlException E)
+            {
+                MessageBox.Show("Can not open connection ! ");
+                throw E;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return user;
         }
 
         public static bool createHouse(string hName, int x, int y, string alarmS)
@@ -146,7 +182,7 @@ namespace Alarm
 
         }
 
-        public static ComboBox cbFill(ComboBox dgv, int userID)
+        public static DataGridView cbFill(DataGridView dgv, int userID)
         {
             MySqlConnection con = DBConection();
             string sql = "SELECT idHome,hName FROM alarm.home where userID = @nameid";
@@ -167,10 +203,10 @@ namespace Alarm
                 da.SelectCommand = cmd;
                 DataTable daTbl = new DataTable();
                 da.Fill(daTbl);
-                //BindingSource bSource = new BindingSource();
-                //bSource.DataSource = daTbl;
-                dgv.DataSource = daTbl;
-                //daTbl.Columns.Add("idHome", typeof(int));
+                BindingSource bSource = new BindingSource();
+                bSource.DataSource = daTbl;
+                dgv.DataSource = bSource;
+               // daTbl.Columns.Add("idHome", typeof(int));
 
                 // con.Close();
 
