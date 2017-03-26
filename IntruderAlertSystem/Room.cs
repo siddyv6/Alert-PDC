@@ -11,10 +11,10 @@ namespace Alarm
      *      ROOM RELATED ITEMS
      */
 
-    public enum RoomCategory
+    public enum RLocation
     {
-        End_Room,
-        Middle_Room
+        Border,
+        Middle
     }
 
     public enum RoomType
@@ -28,9 +28,12 @@ namespace Alarm
 
     public class Room
     {
+        public int IdHouse { get; set; }
+        //public string RoomType { get; set; }
+
         int roomID;
 
-        RoomCategory category;
+        RLocation category;
         RoomType type;
 
         int x;
@@ -38,11 +41,11 @@ namespace Alarm
 
         string doorLocations = "";
 
-      //  Sensor[] sensors;
+        Sensor[] sensors;
 
         public Room() { }
 
-        public Room(int roomID, RoomCategory category, RoomType type, int x, int y, string doorLocations)
+        public Room(int roomID, RLocation category, RoomType type, int x, int y, string doorLocations)
         {
             this.roomID = roomID;
             this.category = category;
@@ -65,7 +68,7 @@ namespace Alarm
             }
         }
 
-        public RoomCategory Category
+        public RLocation Category
         {
             get
             {
@@ -130,7 +133,22 @@ namespace Alarm
             }
         }
 
-        //public Sensor[] Sensors
+        public Sensor[] Sensors { get; internal set; }
+
+        public int X1
+        {
+            get
+            {
+                return x;
+            }
+
+            set
+            {
+                x = value;
+            }
+        }
+
+        //public sensor[] sensors
         //{
         //    get
         //    {

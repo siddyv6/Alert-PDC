@@ -24,13 +24,14 @@ namespace Alarm
         public static int homeIDs;
 
         Room[,] rooms;
-        private int idhome;
+        int idhome;
+        string hName;
 
         public House() { }
 
         public House(int idhome, AlarmS state)
         {
-            this.idhome = idhome;
+            this.Idhome = idhome;
             this.state = state;
         }
 
@@ -70,6 +71,34 @@ namespace Alarm
             set
             {
                 homeIDs = value;
+            }
+        }
+
+        public int Idhome
+        {
+            get
+            {
+                return idhome;
+            }
+
+            set
+            {
+                idhome = value;
+            }
+        }
+
+        public int size { get; internal set; }
+
+        public string HName
+        {
+            get
+            {
+                return hName;
+            }
+
+            set
+            {
+                hName = value;
             }
         }
     }
