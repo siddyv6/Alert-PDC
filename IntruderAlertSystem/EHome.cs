@@ -14,9 +14,13 @@ namespace Alarm
     public partial class EHome : Form
     {
         private static EHome Ehome = null;
+        public int idSensor;
+
         private static House home = null;
         private static Room[,] room ;
         private static Room[] roomss;
+        private static string Test;
+        public int idRoom;
 
         public enum Locations
         {
@@ -31,6 +35,7 @@ namespace Alarm
         }
         private DataGridView test;
 
+        private DataGridView slis;
 
         public static Form getInstance()
         {
@@ -89,6 +94,12 @@ namespace Alarm
             Console.WriteLine(home.size);
             
             roomss = dbstuff.getRoomsFromFloor(home.Idhome);
+            foreach(Room room in roomss)
+                {
+                dgv.Rows[room.X].Cells[room.Y].Value = room.Type;
+                
+            }
+           // Console.WriteLine(roomss[0].RoomID);
           //  Console.WriteLine(home.Rooms[home.Idhome, home.Idhome]);
           
            // home.Rooms[home.size,home.size];
@@ -99,7 +110,8 @@ namespace Alarm
             XX.Text = e.RowIndex.ToString();
            
             YY.Text = e.ColumnIndex.ToString();
-
+            int x = Int32.Parse(XX.Text);
+            int y = Int32.Parse(YY.Text);
             // limit doors to inside the house(no doors at edges)
             Locations cp = (Locations)CLDL.SelectedItem;
             int cellX = dgv.SelectedCells[0].ColumnIndex;
@@ -134,27 +146,82 @@ namespace Alarm
             }
 
             CLDL.DataSource = compassPoints;
+            string selectedValue = (string)vHouses.SelectedItem;
+            int r = Convert.ToInt32(selectedValue);
+            idRoom = dbstuff.getRoomId(r, x, y);
+            slis = dbstuff.getSList(SList, idRoom);
 
         }
 
-        private void addRoom_Click(object sender, EventArgs e)
+
+    private void addRoom_Click(object sender, EventArgs e)
         {
             string selectedValue = (string)vHouses.SelectedItem;
 
            // room = new Room[Int32.Parse(XX.Text), Int32.Parse(YY.Text)];
 
-           // var op = (RoomType)Enum.Parse(typeof(RoomType), CBType.Text.Replace(' ', '_'));
+           var op = (RoomType)Enum.Parse(typeof(RoomType), CBType.Text.Replace(' ', '_'));
             //  home.Rooms[Int32.Parse(XX.Text), Int32.Parse(YY.Text)] = ;
             //  Room room = home.Rooms[Int32.Parse(XX.Text), Int32.Parse(YY.Text)];
             int x = Int32.Parse(XX.Text);
             int y = Int32.Parse(YY.Text);
             room[x, y] = new Room();
             room[x, y].Type = (RoomType)Enum.Parse(typeof(RoomType), CBType.Text);
+            Console.WriteLine(room[x, y].Type);
 
+            Console.WriteLine(dbstuff.insertRoom(House.homeIDs, x, y,CBType.Text, Test));
             //  Console.WriteLine(room);
             //room[Int32.Parse(YY.Text), Int32.Parse(XX.Text)].Type = (RoomType)Enum.Parse(typeof(RoomType), CBType.Text.Replace(' ', '_')); 
            // Console.WriteLine(op);
             dgv.Rows[Int32.Parse(XX.Text)].Cells[Int32.Parse(YY.Text)].Value = CBType.Text;
+        }
+
+        private void CLDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Test = "";
+
+            int selected = CLDL.SelectedIndex;
+            if (selected != -1)
+            {
+                Test += CLDL.Items[selected].ToString();
+            }
+        }
+
+        private void checkItemIfExists(ref CheckedListBox clb, Enum e)
+        {
+            // http://stackoverflow.com/questions/370820/how-do-i-programmatically-check-an-item-in-a-checkedlistbox-in-c-sharp
+            if (clb.Items.Contains(e))
+            {
+                int i = clb.Items.IndexOf(e);
+                clb.SetItemCheckState(i, CheckState.Checked);
+            }
+        }
+
+        private void removeSensor_Click(object sender, EventArgs e)
+        {
+
+            Console.WriteLine(dbstuff.deleteSensor(idSensor));
+            MessageBox.Show("House has been deleted.",
+                   "House Name fields are blank", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+     //       test = dbstuff.cbFill(dataGridView1, User.UserID);
+
+        }
+
+        private void addSensor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SList_SelectionChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in SList.SelectedRows)
+            {
+                int value1 = Convert.ToInt32(row.Cells[0].Value.ToString());
+                string value2 = row.Cells[1].Value.ToString();
+                //...
+                idSensor = value1;
+                Console.WriteLine(idSensor);
+            }
         }
     }
 }

@@ -25,6 +25,58 @@ namespace Alarm
             return con;
         }
 
+        public static int getRoomId(int idhome, int x, int y)
+        {
+            MySqlConnection con = DBConection();
+            string sql = "SELECT idrooms FROM rooms WHERE x = @x AND y = @y AND idhome = @idhome";
+            MySqlCommand cmd = new MySqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@idhome", idhome);
+            cmd.Parameters.AddWithValue("@y", y);
+            cmd.Parameters.AddWithValue("@x", x);
+
+            //MySqlParameter paramUsername = new MySqlParameter("@name", MySqlDbType.VarChar);
+            //  paramUsername.Value = username;
+            //cmd.Parameters.Add(paramUsername);
+
+            int user = 0;
+            MySqlDataReader reader;
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    
+                    user = reader.GetInt32("idrooms");
+                 
+
+                    //string c = reader.GetString("RLocation");
+                    //if (c != null)
+                    //{
+                    //    room.Category = CStuff.convertMySQLEnumToCSharpEnum<RLocation>(c);
+
+                    //}
+                    ///  room.Category = CStuff.convertMySQLEnumToCSharpEnum<RLocation>(c);
+
+                }
+
+                reader.Close();
+            }
+            catch (MySqlException E)
+            {
+                MessageBox.Show("Can not open connection ! ");
+                throw E;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return user;
+        }
+
         public static bool uniqueUsername(string username)
         {
             MySqlConnection con = DBConection();
@@ -64,6 +116,74 @@ namespace Alarm
             return user;
         }
 
+
+        public static DataGridView getSList(DataGridView SList, int idroom)
+        {
+
+            SList.DataSource = null;
+
+            MySqlConnection conn = dbstuff.DBConection();
+            MySqlCommand sqlCmd = conn.CreateCommand();
+            sqlCmd.CommandType = CommandType.Text;
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = sqlCmd;
+
+            sqlCmd.CommandText = "SELECT idsensor,sensorTypes,v FROM sensor WHERE idrooms = @idroom";
+            sqlCmd.Parameters.Add(new MySqlParameter("@idRoom", idroom));
+
+            DataTable daTb2 = new DataTable();
+            BindingSource bSource = new BindingSource();
+
+            da.SelectCommand = sqlCmd;
+            da.Fill(daTb2);
+
+            try
+            {
+           //     idSensor = daTb2.Rows[0][0].ToString();
+                bSource.DataSource = daTb2;
+                SList.DataSource = bSource;
+            }
+            catch
+            {
+
+            }
+            return SList;
+        }
+
+        public static bool deleteSensor(int sensorID)
+        {
+            MySqlConnection con = DBConection();
+            string sql = "DELETE FROM `alarm`.`sensor` WHERE `idsensor`=@sensorID";
+            MySqlCommand cmd = new MySqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@sensorID", sensorID);
+
+            //MySqlParameter paramUsername = new MySqlParameter("@name", MySqlDbType.VarChar);
+            //  paramUsername.Value = username;
+            //cmd.Parameters.Add(paramUsername);
+
+            bool user = false;
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+
+
+                user = true;
+
+
+            }
+            catch (MySqlException E)
+            {
+                MessageBox.Show("Can not open connection ! ");
+                throw E;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return user;
+        }
 
         public static bool deleteHouse(int houseID)
         {
@@ -111,7 +231,7 @@ namespace Alarm
             cmd.Parameters.AddWithValue("@y", y);
             cmd.Parameters.AddWithValue("@state", alarmS);
 
-            string[,] workThrough = new string[x, y];
+            //string[,] workThrough = new string[x, y];
             
 
             //MySqlParameter paramUsername = new MySqlParameter("@name", MySqlDbType.VarChar);
@@ -145,6 +265,49 @@ namespace Alarm
         }
 
 
+        public static bool insertRoom(int idH, int x, int y, string roomType, string DLoc)
+        {
+            MySqlConnection con = DBConection();
+            string sql = "INSERT INTO `alarm`.`rooms` (`idhome`, `x`, `y`, `roomsType`, `DLocation`) VALUES (@idhome, @x, @y, @roomType, @DLoc)";
+            MySqlCommand cmd = new MySqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@idhome", idH);
+            cmd.Parameters.AddWithValue("@x", x);
+            cmd.Parameters.AddWithValue("@y", y);
+            cmd.Parameters.AddWithValue("@roomType", roomType);
+            cmd.Parameters.AddWithValue("@DLoc", DLoc);
+
+            //string[,] workThrough = new string[x, y];
+
+
+            //MySqlParameter paramUsername = new MySqlParameter("@name", MySqlDbType.VarChar);
+            //  paramUsername.Value = username;
+            //cmd.Parameters.Add(paramUsername);
+
+            bool user = false;
+            //  MySqlDataReader reader;
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+
+                //  reader = cmd.ExecuteReader();
+
+                user = true;
+                //Console.WriteLine("Test");
+                //   reader.Close();
+            }
+            catch (MySqlException E)
+            {
+                MessageBox.Show("Can not open connection ! ");
+                throw E;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return user;
+        }
 
         public static DataGridView homelog(DataGridView dgv, int userID)
         {
@@ -232,8 +395,13 @@ namespace Alarm
                     string t = reader.GetString("roomsType");
                     room.Type = CStuff.convertMySQLEnumToCSharpEnum<RoomType>(t);
 
-                    string c = reader.GetString("RLocation");
-                    room.Category = CStuff.convertMySQLEnumToCSharpEnum<RLocation>(c);
+                    //string c = reader.GetString("RLocation");
+                    //if (c != null)
+                    //{
+                    //    room.Category = CStuff.convertMySQLEnumToCSharpEnum<RLocation>(c);
+
+                    //}
+                  ///  room.Category = CStuff.convertMySQLEnumToCSharpEnum<RLocation>(c);
 
                     roomList.Add(room);
                 }

@@ -28,8 +28,10 @@ namespace Alarm
 
     public class Room
     {
+        public static Room rom = null;
         public int IdHouse { get; set; }
         //public string RoomType { get; set; }
+        private int romId;
 
         int roomID;
 
@@ -145,6 +147,19 @@ namespace Alarm
             set
             {
                 x = value;
+            }
+        }
+
+        public int RomId
+        {
+            get
+            {
+                return romId;
+            }
+
+            set
+            {
+                romId = value;
             }
         }
 
