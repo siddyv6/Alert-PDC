@@ -42,12 +42,13 @@
             this.YY = new System.Windows.Forms.TextBox();
             this.XX = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.sValue = new System.Windows.Forms.TextBox();
             this.sensorTypess = new System.Windows.Forms.ComboBox();
             this.SList = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
             this.removeSensor = new System.Windows.Forms.Button();
             this.addSensor = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SHouse.SuspendLayout();
             this.roomInfo.SuspendLayout();
@@ -60,10 +61,11 @@
             this.dgv.AllowUserToAddRows = false;
             this.dgv.AllowUserToDeleteRows = false;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Location = new System.Drawing.Point(13, 13);
+            this.dgv.Location = new System.Drawing.Point(266, 12);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
-            this.dgv.Size = new System.Drawing.Size(435, 340);
+            this.dgv.RowTemplate.Height = 50;
+            this.dgv.Size = new System.Drawing.Size(465, 418);
             this.dgv.TabIndex = 0;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             // 
@@ -71,9 +73,9 @@
             // 
             this.SHouse.Controls.Add(this.Shom);
             this.SHouse.Controls.Add(this.vHouses);
-            this.SHouse.Location = new System.Drawing.Point(610, 13);
+            this.SHouse.Location = new System.Drawing.Point(14, 12);
             this.SHouse.Name = "SHouse";
-            this.SHouse.Size = new System.Drawing.Size(224, 79);
+            this.SHouse.Size = new System.Drawing.Size(246, 74);
             this.SHouse.TabIndex = 1;
             this.SHouse.TabStop = false;
             this.SHouse.Text = "Select House";
@@ -99,6 +101,7 @@
             // 
             // roomInfo
             // 
+            this.roomInfo.Controls.Add(this.label3);
             this.roomInfo.Controls.Add(this.addRoom);
             this.roomInfo.Controls.Add(this.label2);
             this.roomInfo.Controls.Add(this.label1);
@@ -107,9 +110,9 @@
             this.roomInfo.Controls.Add(this.CLDL);
             this.roomInfo.Controls.Add(this.YY);
             this.roomInfo.Controls.Add(this.XX);
-            this.roomInfo.Location = new System.Drawing.Point(13, 359);
+            this.roomInfo.Location = new System.Drawing.Point(9, 92);
             this.roomInfo.Name = "roomInfo";
-            this.roomInfo.Size = new System.Drawing.Size(347, 134);
+            this.roomInfo.Size = new System.Drawing.Size(235, 245);
             this.roomInfo.TabIndex = 2;
             this.roomInfo.TabStop = false;
             this.roomInfo.Text = "Add Room";
@@ -117,9 +120,9 @@
             // addRoom
             // 
             this.addRoom.BackColor = System.Drawing.SystemColors.Control;
-            this.addRoom.Location = new System.Drawing.Point(7, 100);
+            this.addRoom.Location = new System.Drawing.Point(3, 199);
             this.addRoom.Name = "addRoom";
-            this.addRoom.Size = new System.Drawing.Size(121, 23);
+            this.addRoom.Size = new System.Drawing.Size(125, 23);
             this.addRoom.TabIndex = 7;
             this.addRoom.Text = "Add Room";
             this.addRoom.UseVisualStyleBackColor = false;
@@ -137,22 +140,24 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(78, 2);
+            this.label1.Location = new System.Drawing.Point(109, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 13);
             this.label1.TabIndex = 5;
             this.label1.Text = "Room Location";
             this.label1.Visible = false;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // CBCat
             // 
             this.CBCat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CBCat.FormattingEnabled = true;
-            this.CBCat.Location = new System.Drawing.Point(77, 20);
+            this.CBCat.Location = new System.Drawing.Point(108, 34);
             this.CBCat.Name = "CBCat";
             this.CBCat.Size = new System.Drawing.Size(121, 21);
             this.CBCat.TabIndex = 4;
             this.CBCat.Visible = false;
+            this.CBCat.SelectedIndexChanged += new System.EventHandler(this.CBCat_SelectedIndexChanged);
             // 
             // CBType
             // 
@@ -166,9 +171,9 @@
             // CLDL
             // 
             this.CLDL.FormattingEnabled = true;
-            this.CLDL.Location = new System.Drawing.Point(204, 20);
+            this.CLDL.Location = new System.Drawing.Point(6, 114);
             this.CLDL.Name = "CLDL";
-            this.CLDL.Size = new System.Drawing.Size(120, 94);
+            this.CLDL.Size = new System.Drawing.Size(121, 79);
             this.CLDL.TabIndex = 2;
             this.CLDL.SelectedIndexChanged += new System.EventHandler(this.CLDL_SelectedIndexChanged);
             // 
@@ -190,57 +195,61 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.sValue);
             this.groupBox1.Controls.Add(this.sensorTypess);
             this.groupBox1.Controls.Add(this.SList);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.removeSensor);
             this.groupBox1.Controls.Add(this.addSensor);
-            this.groupBox1.Location = new System.Drawing.Point(454, 148);
+            this.groupBox1.Location = new System.Drawing.Point(737, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(386, 345);
+            this.groupBox1.Size = new System.Drawing.Size(328, 345);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sensor Information";
             // 
-            // textBox1
+            // sValue
             // 
-            this.textBox1.Location = new System.Drawing.Point(7, 296);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(178, 20);
-            this.textBox1.TabIndex = 13;
+            this.sValue.Location = new System.Drawing.Point(7, 296);
+            this.sValue.Name = "sValue";
+            this.sValue.Size = new System.Drawing.Size(132, 20);
+            this.sValue.TabIndex = 13;
             // 
             // sensorTypess
             // 
+            this.sensorTypess.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.sensorTypess.FormattingEnabled = true;
             this.sensorTypess.Location = new System.Drawing.Point(7, 252);
             this.sensorTypess.Name = "sensorTypess";
-            this.sensorTypess.Size = new System.Drawing.Size(178, 21);
+            this.sensorTypess.Size = new System.Drawing.Size(132, 21);
             this.sensorTypess.TabIndex = 12;
             // 
             // SList
             // 
+            this.SList.AllowUserToAddRows = false;
+            this.SList.AllowUserToDeleteRows = false;
             this.SList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.SList.Location = new System.Drawing.Point(7, 20);
             this.SList.Name = "SList";
-            this.SList.Size = new System.Drawing.Size(373, 159);
+            this.SList.Size = new System.Drawing.Size(315, 159);
             this.SList.TabIndex = 11;
             this.SList.SelectionChanged += new System.EventHandler(this.SList_SelectionChanged);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(191, 296);
+            this.button3.Location = new System.Drawing.Point(145, 296);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(178, 29);
+            this.button3.Size = new System.Drawing.Size(159, 20);
             this.button3.TabIndex = 10;
             this.button3.Text = "Update Sensor Values";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // removeSensor
             // 
             this.removeSensor.Location = new System.Drawing.Point(7, 188);
             this.removeSensor.Name = "removeSensor";
-            this.removeSensor.Size = new System.Drawing.Size(362, 40);
+            this.removeSensor.Size = new System.Drawing.Size(297, 40);
             this.removeSensor.TabIndex = 9;
             this.removeSensor.Text = "Remove Sensor";
             this.removeSensor.UseVisualStyleBackColor = true;
@@ -248,19 +257,28 @@
             // 
             // addSensor
             // 
-            this.addSensor.Location = new System.Drawing.Point(191, 243);
+            this.addSensor.Location = new System.Drawing.Point(145, 252);
             this.addSensor.Name = "addSensor";
-            this.addSensor.Size = new System.Drawing.Size(178, 37);
+            this.addSensor.Size = new System.Drawing.Size(159, 21);
             this.addSensor.TabIndex = 8;
             this.addSensor.Text = "Add Sensor";
             this.addSensor.UseVisualStyleBackColor = true;
             this.addSensor.Click += new System.EventHandler(this.addSensor_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 96);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Door Location";
+            // 
             // EHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(852, 505);
+            this.ClientSize = new System.Drawing.Size(1070, 434);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.roomInfo);
             this.Controls.Add(this.SHouse);
@@ -300,6 +318,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.DataGridView SList;
         private System.Windows.Forms.ComboBox sensorTypess;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox sValue;
+        private System.Windows.Forms.Label label3;
     }
 }

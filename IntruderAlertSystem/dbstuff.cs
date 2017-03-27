@@ -168,6 +168,80 @@ namespace Alarm
                 con.Open();
                 cmd.ExecuteNonQuery();
 
+                    user = true;
+                
+
+               // user = true;
+
+
+            }
+            catch (MySqlException E)
+            {
+                MessageBox.Show("Can not open connection ! ");
+                throw E;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return user;
+        }
+
+        public static bool insertSensor(int idrooms, string sensorTypes, string v)
+        {
+            MySqlConnection con = DBConection();
+            string sql = "INSERT INTO `alarm`.`sensor` (`idrooms`, `v`, `sensorTypes`) VALUES (@idrooms, @v, @sensorTypes)";
+            MySqlCommand cmd = new MySqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@idrooms", idrooms);
+            cmd.Parameters.AddWithValue("@sensorTypes", sensorTypes);
+            cmd.Parameters.AddWithValue("@v", v);
+
+            //MySqlParameter paramUsername = new MySqlParameter("@name", MySqlDbType.VarChar);
+            //  paramUsername.Value = username;
+            //cmd.Parameters.Add(paramUsername);
+
+            bool user = false;
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+
+
+                user = true;
+
+
+            }
+            catch (MySqlException E)
+            {
+                MessageBox.Show("Can not open connection ! ");
+                throw E;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return user;
+        }
+        public static bool alterSValue(int idSensor, string v)
+        {
+            MySqlConnection con = DBConection();
+            string sql = "UPDATE `alarm`.`sensor` SET `v`=@v WHERE `idsensor`= @idSensor";
+            MySqlCommand cmd = new MySqlCommand(sql, con);
+            cmd.Parameters.AddWithValue("@idSensor", idSensor);
+            cmd.Parameters.AddWithValue("@v", v);
+
+            //MySqlParameter paramUsername = new MySqlParameter("@name", MySqlDbType.VarChar);
+            //  paramUsername.Value = username;
+            //cmd.Parameters.Add(paramUsername);
+
+            bool user = false;
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+
 
                 user = true;
 
@@ -390,7 +464,7 @@ namespace Alarm
                     room.RoomID = reader.GetInt32("idrooms");
                     room.X = reader.GetInt32("x");
                     room.Y = reader.GetInt32("y");
-                    room.DoorLocations = reader.GetString("DLocation");
+                    room.DLocations = reader.GetString("DLocation");
 
                     string t = reader.GetString("roomsType");
                     room.Type = CStuff.convertMySQLEnumToCSharpEnum<RoomType>(t);

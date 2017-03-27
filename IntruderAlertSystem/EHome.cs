@@ -75,6 +75,7 @@ namespace Alarm
             CStuff.fillComboBoxFromEnum<RLocation>(ref CBCat);
             CStuff.fillListBoxFromEnum<Locations>(ref CLDL);
             CStuff.fillComboBoxFromEnum<RoomType>(ref CBType);
+            CStuff.fillComboBoxFromEnum<SensorTypeEnum>(ref sensorTypess);
 
         }
 
@@ -96,7 +97,7 @@ namespace Alarm
             roomss = dbstuff.getRoomsFromFloor(home.Idhome);
             foreach(Room room in roomss)
                 {
-                dgv.Rows[room.X].Cells[room.Y].Value = room.Type;
+                dgv.Rows[room.X].Cells[room.Y].Value = room.Type + room.DLocations;
                 
             }
            // Console.WriteLine(roomss[0].RoomID);
@@ -169,16 +170,36 @@ namespace Alarm
             room[x, y].Type = (RoomType)Enum.Parse(typeof(RoomType), CBType.Text);
             Console.WriteLine(room[x, y].Type);
 
+            Test = "";
+
+            foreach (int i in CLDL.CheckedIndices)
+            {
+                Test += CLDL.Items[i].ToString();
+            }
+
             Console.WriteLine(dbstuff.insertRoom(House.homeIDs, x, y,CBType.Text, Test));
             //  Console.WriteLine(room);
             //room[Int32.Parse(YY.Text), Int32.Parse(XX.Text)].Type = (RoomType)Enum.Parse(typeof(RoomType), CBType.Text.Replace(' ', '_')); 
            // Console.WriteLine(op);
             dgv.Rows[Int32.Parse(XX.Text)].Cells[Int32.Parse(YY.Text)].Value = CBType.Text;
+
+            //Remake Table
+            home = dbstuff.getHouseAndRooms(Convert.ToInt32(selectedValue));
+            //  room = dbstuff.getRoomsAndSensorsFromFloor(Convert.ToInt32(selectedValue));
+            test = CStuff.creatDG(dgv, home.size, home.size);
+            Console.WriteLine(home.size);
+
+            roomss = dbstuff.getRoomsFromFloor(home.Idhome);
+            foreach (Room room in roomss)
+            {
+                dgv.Rows[room.X].Cells[room.Y].Value = room.Type + room.DLocations;
+
+            }
         }
 
         private void CLDL_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Test = "";
+            //Test = "";
 
             int selected = CLDL.SelectedIndex;
             if (selected != -1)
@@ -199,16 +220,38 @@ namespace Alarm
 
         private void removeSensor_Click(object sender, EventArgs e)
         {
-
-            Console.WriteLine(dbstuff.deleteSensor(idSensor));
-            MessageBox.Show("House has been deleted.",
-                   "House Name fields are blank", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-     //       test = dbstuff.cbFill(dataGridView1, User.UserID);
+            if(dbstuff.deleteSensor(idSensor) != false)
+            {
+                Console.WriteLine();
+                MessageBox.Show("Sensor has been deleted.",
+                       "Sensor has been deleted", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //       test = dbstuff.cbFill(dataGridView1, User.UserID);
+                slis = dbstuff.getSList(SList, idRoom);
+              
+            } else
+            {
+                MessageBox.Show("Please Choose a sensor to Delete or Add Sensors to the room",
+                "Please Choose a sensor to Delete or Add Sensors to the room", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        
 
         }
 
         private void addSensor_Click(object sender, EventArgs e)
         {
+            if(idRoom==0)
+            {
+                MessageBox.Show("Choose a Room first",
+                  "Choose a Room first", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            } else
+            {
+                Console.WriteLine(dbstuff.insertSensor(idRoom, sensorTypess.Text, sValue.Text));
+                MessageBox.Show("Sensor has been Added.",
+                       "Sensor has been Added", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //       test = dbstuff.cbFill(dataGridView1, User.UserID);
+                slis = dbstuff.getSList(SList, idRoom);
+            }
+        
 
         }
 
@@ -222,6 +265,23 @@ namespace Alarm
                 idSensor = value1;
                 Console.WriteLine(idSensor);
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dbstuff.alterSValue(idSensor, sValue.Text);
+            slis = dbstuff.getSList(SList, idRoom);
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CBCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

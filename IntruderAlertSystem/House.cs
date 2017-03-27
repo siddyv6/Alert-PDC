@@ -13,9 +13,9 @@ namespace Alarm
 
     public enum AlarmS
     {
-        On,
+        Armed,
         Off,
-        Set
+        Alert
     }
 
     public class House

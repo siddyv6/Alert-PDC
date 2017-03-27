@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Alarm
 {
-   
+
         /*
          *      SENSOR RELATED ITEMS
          */
-
         public enum SensorTypeEnum
         {
             Motion,
             Temp,
-            PressurePad,
+        DoorPressurePad,
             GlassBreak,
-        }
+        Fire
+    }
         public class Sensor
         {
             int sensorID;

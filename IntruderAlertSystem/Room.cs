@@ -21,9 +21,10 @@ namespace Alarm
     {
         Bedroom,
         Kitchen,
-        Living_Room,
+        LivingRoom,
         Bathroom,
-        Corridor
+        Corridor,
+        Storage
     }
 
     public class Room
@@ -41,7 +42,7 @@ namespace Alarm
         int x;
         int y;
 
-        string doorLocations = "";
+        string dLocations = "";
 
         Sensor[] sensors;
 
@@ -54,7 +55,7 @@ namespace Alarm
             this.type = type;
             this.x = x;
             this.y = y;
-            this.doorLocations = doorLocations;
+            this.dLocations = doorLocations;
         }
 
         public int RoomID
@@ -122,16 +123,16 @@ namespace Alarm
             }
         }
 
-        public string DoorLocations
+        public string DLocations
         {
             get
             {
-                return doorLocations;
+                return dLocations;
             }
 
             set
             {
-                doorLocations = value;
+                dLocations = value;
             }
         }
 
