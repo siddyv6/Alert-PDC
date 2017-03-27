@@ -89,20 +89,20 @@ namespace Alarm
             //cmd.Parameters.Add(paramUsername);
 
             bool user = false;
-            MySqlDataReader reader;
+          //  MySqlDataReader reader;
 
             try
             {
                 con.Open();
                 cmd.ExecuteNonQuery();
 
-                reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
+              //  reader = cmd.ExecuteReader();
+              //  if (reader.Read())
+               // {
                     user = true;
-                }
+               // }
 
-                reader.Close();
+              //  reader.Close();
             }
             catch (MySqlException E)
             {

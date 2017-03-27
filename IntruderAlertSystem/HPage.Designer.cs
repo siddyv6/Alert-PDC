@@ -31,7 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.VHLogs = new System.Windows.Forms.Button();
             this.SLogs = new System.Windows.Forms.Button();
-            this.viewHouse = new System.Windows.Forms.Button();
             this.createHouse = new System.Windows.Forms.Button();
             this.EditH = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -65,19 +64,9 @@
             this.SLogs.UseVisualStyleBackColor = true;
             this.SLogs.Click += new System.EventHandler(this.SLogs_Click);
             // 
-            // viewHouse
-            // 
-            this.viewHouse.Location = new System.Drawing.Point(28, 127);
-            this.viewHouse.Name = "viewHouse";
-            this.viewHouse.Size = new System.Drawing.Size(231, 37);
-            this.viewHouse.TabIndex = 3;
-            this.viewHouse.Text = "View Houses";
-            this.viewHouse.UseVisualStyleBackColor = true;
-            this.viewHouse.Click += new System.EventHandler(this.viewHouse_Click);
-            // 
             // createHouse
             // 
-            this.createHouse.Location = new System.Drawing.Point(28, 170);
+            this.createHouse.Location = new System.Drawing.Point(28, 127);
             this.createHouse.Name = "createHouse";
             this.createHouse.Size = new System.Drawing.Size(231, 37);
             this.createHouse.TabIndex = 4;
@@ -87,11 +76,11 @@
             // 
             // EditH
             // 
-            this.EditH.Location = new System.Drawing.Point(28, 213);
+            this.EditH.Location = new System.Drawing.Point(28, 170);
             this.EditH.Name = "EditH";
             this.EditH.Size = new System.Drawing.Size(231, 37);
             this.EditH.TabIndex = 5;
-            this.EditH.Text = "Edit House";
+            this.EditH.Text = "View/Edit House";
             this.EditH.UseVisualStyleBackColor = true;
             this.EditH.Click += new System.EventHandler(this.EditH_Click);
             // 
@@ -99,10 +88,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(309, 296);
+            this.ClientSize = new System.Drawing.Size(276, 242);
             this.Controls.Add(this.EditH);
             this.Controls.Add(this.createHouse);
-            this.Controls.Add(this.viewHouse);
             this.Controls.Add(this.SLogs);
             this.Controls.Add(this.VHLogs);
             this.Controls.Add(this.label1);
@@ -117,7 +105,6 @@
 
         private System.Windows.Forms.Button VHLogs;
         private System.Windows.Forms.Button SLogs;
-        private System.Windows.Forms.Button viewHouse;
         private System.Windows.Forms.Button createHouse;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button EditH;

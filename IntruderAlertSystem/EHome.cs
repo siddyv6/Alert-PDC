@@ -81,6 +81,7 @@ namespace Alarm
 
         private void Shom_Click(object sender, EventArgs e)
         {
+            Shom.Enabled = false;
 
             // Console.WriteLine(SizeCB.Items);
             string selectedValue = (string)vHouses.SelectedItem;
