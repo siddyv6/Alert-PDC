@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace IntruderAlertSystem {
+namespace Alarm {
     public partial class Login : Form {
        // public User Test;
         private static Login login = null;

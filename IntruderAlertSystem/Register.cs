@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 //https://stackoverflow.com/questions/3005732/showing-a-hidden-form
 
-namespace IntruderAlertSystem {
+namespace Alarm {
     public partial class Register : Form {
         private static Register register = null;
         String errorMessage = "";

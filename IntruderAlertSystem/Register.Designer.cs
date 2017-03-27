@@ -1,4 +1,4 @@
-﻿namespace IntruderAlertSystem {
+﻿namespace Alarm {
     partial class Register {
         /// <summary>
         /// Required designer variable.
